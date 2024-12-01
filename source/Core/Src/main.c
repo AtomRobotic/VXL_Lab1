@@ -264,6 +264,11 @@ void clearAllClock(void) {
         HAL_GPIO_WritePin(GPIOA, clockLEDs[10], GPIO_PIN_RESET);
         HAL_GPIO_WritePin(GPIOA, clockLEDs[11], GPIO_PIN_RESET);
 }
+
+void setNumberOnClock(int i) {
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[i], GPIO_PIN_SET);
+}
+
 /* USER CODE END 4 */
 
 /**
