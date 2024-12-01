@@ -92,25 +92,83 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int state = 0;
   while (1)
   {
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-
-	    HAL_Delay(5000);
-
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-
-	    HAL_Delay(2000);
-
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
-
-	    HAL_Delay(3000);
+	  switch (state){
+	  case 0:
+		HAL_GPIO_WritePin(number_0_GPIO_Port, number_0_Pin, SET);
+		HAL_Delay(1000);
+		HAL_GPIO_WritePin(number_0_GPIO_Port, number_0_Pin, RESET);
+		state++;
+		break;
+	  case 1:
+	  		HAL_GPIO_WritePin(number_5_GPIO_Port, number_5_Pin, SET);
+	  		HAL_Delay(1000);
+	  		HAL_GPIO_WritePin(number_5_GPIO_Port, number_5_Pin, RESET);
+	  		state++;
+	  		break;
+	  case 2:
+	  		HAL_GPIO_WritePin(number_10_GPIO_Port, number_10_Pin, SET);
+	  		HAL_Delay(1000);
+	  		HAL_GPIO_WritePin(number_10_GPIO_Port, number_10_Pin, RESET);
+	  		state++;
+	  		break;
+	  case 3:
+	  		HAL_GPIO_WritePin(number_15_GPIO_Port, number_15_Pin, SET);
+	  		HAL_Delay(1000);
+	  		HAL_GPIO_WritePin(number_15_GPIO_Port, number_15_Pin, RESET);
+	  		state++;
+	  		break;
+	  case 4:
+	  		HAL_GPIO_WritePin(number_20_GPIO_Port, number_20_Pin, SET);
+	  		HAL_Delay(1000);
+	  		HAL_GPIO_WritePin(number_20_GPIO_Port, number_20_Pin, RESET);
+	  		state++;
+	  		break;
+	  case 5:
+	  		HAL_GPIO_WritePin(number_25_GPIO_Port, number_25_Pin, SET);
+	  		HAL_Delay(1000);
+	  		HAL_GPIO_WritePin(number_25_GPIO_Port, number_25_Pin, RESET);
+	  		state++;
+	  		break;
+	  case 6:
+	  		HAL_GPIO_WritePin(number_30_GPIO_Port, number_30_Pin, SET);
+	  		HAL_Delay(1000);
+	  		HAL_GPIO_WritePin(number_30_GPIO_Port, number_30_Pin, RESET);
+	  		state++;
+	  		break;
+	  case 7:
+	  		HAL_GPIO_WritePin(number_35_GPIO_Port, number_35_Pin, SET);
+	  		HAL_Delay(1000);
+	  		HAL_GPIO_WritePin(number_35_GPIO_Port, number_35_Pin, RESET);
+	  		state++;
+	  		break;
+	  case 8:
+	  		HAL_GPIO_WritePin(number_40_GPIO_Port, number_40_Pin, SET);
+	  		HAL_Delay(1000);
+	  		HAL_GPIO_WritePin(number_40_GPIO_Port, number_40_Pin, RESET);
+	  		state++;
+	  		break;
+	  case 9:
+	  		HAL_GPIO_WritePin(number_45_GPIO_Port, number_45_Pin, SET);
+	  		HAL_Delay(1000);
+	  		HAL_GPIO_WritePin(number_45_GPIO_Port, number_45_Pin, RESET);
+	  		state++;
+	  		break;
+	  case 10:
+	  		HAL_GPIO_WritePin(number_50_GPIO_Port, number_50_Pin, SET);
+	  		HAL_Delay(1000);
+	  		HAL_GPIO_WritePin(number_50_GPIO_Port, number_50_Pin, RESET);
+	  		state++;
+	  		break;
+	  case 11:
+	  		HAL_GPIO_WritePin(number_55_GPIO_Port, number_55_Pin, SET);
+	  		HAL_Delay(1000);
+	  		HAL_GPIO_WritePin(number_55_GPIO_Port, number_55_Pin, RESET);
+	  		state = 0;
+	  		break;
+	  }
 
     /* USER CODE END WHILE */
 
@@ -170,10 +228,16 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, RED_LED_Pin|YELLOW_LED_Pin|GREEN_LED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, number_0_Pin|number_5_Pin|number_10_Pin|number_15_Pin
+                          |number_20_Pin|number_25_Pin|number_30_Pin|number_35_Pin
+                          |number_40_Pin|number_45_Pin|number_50_Pin|number_55_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : RED_LED_Pin YELLOW_LED_Pin GREEN_LED_Pin */
-  GPIO_InitStruct.Pin = RED_LED_Pin|YELLOW_LED_Pin|GREEN_LED_Pin;
+  /*Configure GPIO pins : number_0_Pin number_5_Pin number_10_Pin number_15_Pin
+                           number_20_Pin number_25_Pin number_30_Pin number_35_Pin
+                           number_40_Pin number_45_Pin number_50_Pin number_55_Pin */
+  GPIO_InitStruct.Pin = number_0_Pin|number_5_Pin|number_10_Pin|number_15_Pin
+                          |number_20_Pin|number_25_Pin|number_30_Pin|number_35_Pin
+                          |number_40_Pin|number_45_Pin|number_50_Pin|number_55_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
