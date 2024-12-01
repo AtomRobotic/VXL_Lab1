@@ -248,7 +248,22 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+uint16_t clockLEDs[12] = {GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_6, GPIO_PIN_7, GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_11, GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15};
 
+void clearAllClock(void) {
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[0], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[1], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[2], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[3], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[4], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[5], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[6], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[7], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[8], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[9], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[10], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, clockLEDs[11], GPIO_PIN_RESET);
+}
 /* USER CODE END 4 */
 
 /**
