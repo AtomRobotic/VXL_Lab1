@@ -92,83 +92,36 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int state = 0;
+  int hour = 3;
+  int minute = 59;
+  int second = 50;
   while (1)
   {
-	  switch (state){
-	  case 0:
-		HAL_GPIO_WritePin(number_0_GPIO_Port, number_0_Pin, SET);
-		HAL_Delay(1000);
-		HAL_GPIO_WritePin(number_0_GPIO_Port, number_0_Pin, RESET);
-		state++;
-		break;
-	  case 1:
-	  		HAL_GPIO_WritePin(number_5_GPIO_Port, number_5_Pin, SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(number_5_GPIO_Port, number_5_Pin, RESET);
-	  		state++;
-	  		break;
-	  case 2:
-	  		HAL_GPIO_WritePin(number_10_GPIO_Port, number_10_Pin, SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(number_10_GPIO_Port, number_10_Pin, RESET);
-	  		state++;
-	  		break;
-	  case 3:
-	  		HAL_GPIO_WritePin(number_15_GPIO_Port, number_15_Pin, SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(number_15_GPIO_Port, number_15_Pin, RESET);
-	  		state++;
-	  		break;
-	  case 4:
-	  		HAL_GPIO_WritePin(number_20_GPIO_Port, number_20_Pin, SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(number_20_GPIO_Port, number_20_Pin, RESET);
-	  		state++;
-	  		break;
-	  case 5:
-	  		HAL_GPIO_WritePin(number_25_GPIO_Port, number_25_Pin, SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(number_25_GPIO_Port, number_25_Pin, RESET);
-	  		state++;
-	  		break;
-	  case 6:
-	  		HAL_GPIO_WritePin(number_30_GPIO_Port, number_30_Pin, SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(number_30_GPIO_Port, number_30_Pin, RESET);
-	  		state++;
-	  		break;
-	  case 7:
-	  		HAL_GPIO_WritePin(number_35_GPIO_Port, number_35_Pin, SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(number_35_GPIO_Port, number_35_Pin, RESET);
-	  		state++;
-	  		break;
-	  case 8:
-	  		HAL_GPIO_WritePin(number_40_GPIO_Port, number_40_Pin, SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(number_40_GPIO_Port, number_40_Pin, RESET);
-	  		state++;
-	  		break;
-	  case 9:
-	  		HAL_GPIO_WritePin(number_45_GPIO_Port, number_45_Pin, SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(number_45_GPIO_Port, number_45_Pin, RESET);
-	  		state++;
-	  		break;
-	  case 10:
-	  		HAL_GPIO_WritePin(number_50_GPIO_Port, number_50_Pin, SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(number_50_GPIO_Port, number_50_Pin, RESET);
-	  		state++;
-	  		break;
-	  case 11:
-	  		HAL_GPIO_WritePin(number_55_GPIO_Port, number_55_Pin, SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(number_55_GPIO_Port, number_55_Pin, RESET);
-	  		state = 0;
-	  		break;
-	  }
+	  if (second == 60) {
+	              second = 0;
+	              minute += 1;
+
+	              //Minute
+	              if (minute == 60) {
+	                  minute = 0;
+	                  hour += 1;
+
+	                  // Hour
+	                  if (hour == 12) {
+	                      hour = 0;
+	                  }
+	              }
+	          }
+
+	          int hourPos = (hour % 12);
+	          int minPos = (minute / 5) % 12;
+	          int secPos = (second / 5) % 12;
+	          updateClock(hourPos, minPos, secPos);
+
+	          HAL_Delay(1000);
+
+	          //Sec
+	          second++;
 
     /* USER CODE END WHILE */
 
@@ -271,6 +224,13 @@ void setNumberOnClock(int i) {
 
 void clearNumberOnClock(int i) {
         HAL_GPIO_WritePin(GPIOA, clockLEDs[i], GPIO_PIN_RESET);
+}
+
+void updateClock(int hourPos, int minPos, int secPos) {
+    clearAllClock();
+    setNumberOnClock(hourPos);
+    setNumberOnClock(minPos);
+    setNumberOnClock(secPos);
 }
 
 /* USER CODE END 4 */
